@@ -21,11 +21,11 @@ import { CompetitorInspector } from "./components/CompetitorInspector";
 import { SearchSimulator } from "./components/SearchSimulator";
 import { AiMetadataOptimizer } from "./components/AiMetadataOptimizer";
 import { GlobalRatings } from "./components/GlobalRatings";
-import { TemporaryApps } from "./components/TemporaryApps";
 import { AddAppModal } from "./components/AddAppModal";
 import { LandingPage } from "./components/LandingPage";
 import { AlertSettingsPanel } from "./components/AlertSettingsPanel";
 import { ToastAlert } from "./components/ToastAlert";
+import { SubHeaderSearchBar } from "./components/SubHeaderSearchBar";
 
 export default function App() {
   const [theme, setTheme] = useState<"dark" | "light">(
@@ -505,6 +505,18 @@ export default function App() {
         dbStatus={dbStatus}
       />
 
+      {/* Sub-Header Global Search Bar (Studio Mode) */}
+      {mode === "studio" && (
+        <SubHeaderSearchBar
+          apps={apps}
+          selectedApp={selectedApp}
+          selectedCountry={selectedCountry}
+          onSelectApp={(app) => setSelectedAppId(app.id)}
+          onAddApp={handleAddApp}
+          onOpenAddApp={() => setShowAddAppModal(true)}
+        />
+      )}
+
       {/* Main Studio Body with Sidebar */}
       <div className="flex flex-1 overflow-hidden">
         <Sidebar
@@ -529,15 +541,14 @@ export default function App() {
               { id: "simulator", label: "Simulator" },
               { id: "ai-metadata", label: "AI Metadata" },
               { id: "ratings", label: "Ratings" },
-              { id: "temporary", label: "Ideas" },
             ].map((t) => (
               <button
                 key={t.id}
                 onClick={() => setActiveTab(t.id as StudioTab)}
-                className={`px-3 py-1.5 rounded-lg font-medium shrink-0 ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold shrink-0 transition-all ${
                   activeTab === t.id
-                    ? "bg-indigo-600 text-white"
-                    : "bg-zinc-800 text-zinc-400"
+                    ? "bg-indigo-600/20 text-indigo-300 border border-indigo-500/40 shadow-sm"
+                    : "bg-zinc-800 text-zinc-400 hover:text-zinc-200"
                 }`}
               >
                 {t.label}
@@ -612,17 +623,6 @@ export default function App() {
 
           {activeTab === "ratings" && (
             <GlobalRatings app={selectedApp} countryName={currentCountryObj.name} />
-          )}
-
-          {activeTab === "temporary" && (
-            <TemporaryApps
-              apps={apps}
-              onSelectApp={(app) => {
-                setSelectedAppId(app.id);
-                setActiveTab("tracker");
-              }}
-              onOpenAddApp={() => setShowAddAppModal(true)}
-            />
           )}
         </main>
       </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { TrackedApp, Country, Platform } from "../types";
+import { TrackedApp, Platform } from "../types";
 import { STOREFRONT_COUNTRIES } from "../data/mockData";
 import {
   Sparkles,
@@ -100,25 +100,25 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="flex items-center bg-zinc-900 border border-zinc-800 rounded-lg p-0.5 text-xs font-medium">
           <button
             onClick={() => mode !== "studio" && onToggleMode()}
-            className={`px-2 py-1 rounded-md transition-all flex items-center space-x-1 ${
+            className={`px-2.5 py-1 rounded-md transition-all flex items-center space-x-1.5 cursor-pointer ${
               mode === "studio"
-                ? "bg-zinc-800 text-white shadow-sm font-semibold"
+                ? "bg-indigo-600/20 text-indigo-300 border border-indigo-500/40 shadow-sm font-semibold"
                 : "text-zinc-400 hover:text-zinc-200"
             }`}
           >
-            <LayoutDashboard className="w-3.5 h-3.5 text-indigo-400" />
-            <span className="hidden md:inline">Studio</span>
+            <LayoutDashboard className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
+            <span className="inline font-medium">Studio</span>
           </button>
           <button
             onClick={() => mode !== "landing" && onToggleMode()}
-            className={`px-2 py-1 rounded-md transition-all flex items-center space-x-1 ${
+            className={`px-2.5 py-1 rounded-md transition-all flex items-center space-x-1.5 cursor-pointer ${
               mode === "landing"
-                ? "bg-zinc-800 text-white shadow-sm font-semibold"
+                ? "bg-purple-600/20 text-purple-300 border border-purple-500/40 shadow-sm font-semibold"
                 : "text-zinc-400 hover:text-zinc-200"
             }`}
           >
-            <ExternalLink className="w-3.5 h-3.5 text-purple-400" />
-            <span className="hidden md:inline">Website</span>
+            <ExternalLink className="w-3.5 h-3.5 text-purple-400 shrink-0" />
+            <span className="inline font-medium">Website</span>
           </button>
         </div>
 
@@ -131,7 +131,7 @@ export const Header: React.FC<HeaderProps> = ({
                 alt={selectedApp.name}
                 className="w-4 h-4 rounded object-cover border border-zinc-700"
               />
-              <div className="max-w-[90px] sm:max-w-[140px] md:max-w-[180px] truncate">
+              <div className="max-w-[80px] sm:max-w-[120px] md:max-w-[150px] truncate">
                 <p className="font-semibold text-zinc-100 truncate text-[11px] sm:text-xs">{selectedApp.name}</p>
               </div>
               <ChevronDown className="w-3 h-3 text-zinc-400" />
@@ -166,11 +166,6 @@ export const Header: React.FC<HeaderProps> = ({
                         </p>
                       </div>
                     </div>
-                    {app.isTemporary && (
-                      <span className="text-[9px] bg-amber-500/10 text-amber-400 border border-amber-500/20 px-1.5 py-0.5 rounded font-mono flex-shrink-0 ml-1">
-                        Idea
-                      </span>
-                    )}
                   </button>
                 ))}
               </div>
@@ -181,7 +176,7 @@ export const Header: React.FC<HeaderProps> = ({
                   className="w-full flex items-center justify-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium transition-colors"
                 >
                   <Plus className="w-3.5 h-3.5" />
-                  <span>Track New App or Idea</span>
+                  <span>Track New App</span>
                 </button>
               </div>
             </div>

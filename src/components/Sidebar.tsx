@@ -20,7 +20,6 @@ export type StudioTab =
   | "simulator"
   | "ai-metadata"
   | "ratings"
-  | "temporary"
   | "alerts";
 
 interface SidebarProps {
@@ -90,11 +89,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
       label: "Global Ratings & Reviews",
       icon: <Star className="w-4 h-4 text-amber-300" />,
     },
-    {
-      id: "temporary",
-      label: "Temporary Apps & Ideas",
-      icon: <Lightbulb className="w-4 h-4 text-orange-400" />,
-    },
   ];
 
   return (
@@ -112,14 +106,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 <button
                   key={item.id}
                   onClick={() => onSelectTab(item.id)}
-                  className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
+                  className={`w-full flex items-center justify-between px-2.5 py-2 rounded-lg text-xs font-medium transition-all cursor-pointer ${
                     isActive
-                      ? "bg-zinc-800/90 text-white shadow-sm border border-zinc-700/60 font-semibold"
-                      : "text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900"
+                      ? "bg-indigo-600/15 text-indigo-300 shadow-sm border border-indigo-500/30 font-semibold"
+                      : "text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900/80"
                   }`}
                 >
                   <div className="flex items-center space-x-2 min-w-0">
-                    {item.icon}
+                    <span className={isActive ? "text-indigo-400" : ""}>{item.icon}</span>
                     <span className="truncate">{item.label}</span>
                   </div>
                   <div className="flex items-center space-x-1 shrink-0">
@@ -129,7 +123,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                           item.badgeColor
                             ? item.badgeColor
                             : isActive
-                            ? "bg-zinc-700 text-zinc-100"
+                            ? "bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 font-semibold"
                             : "bg-zinc-900 text-zinc-400 border border-zinc-800"
                         }`}
                       >
