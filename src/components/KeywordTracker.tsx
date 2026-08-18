@@ -217,42 +217,42 @@ export const KeywordTracker: React.FC<KeywordTrackerProps> = ({
   const activeKeyword = selectedKeywordForHistory || app.keywords[0];
 
   return (
-    <div className="p-4 sm:p-6 space-y-6">
+    <div className="p-3 sm:p-5 space-y-4">
       {/* Top Banner Overview */}
-      <div className="bg-gradient-to-r from-zinc-900 via-zinc-900/90 to-indigo-950/40 border border-zinc-800 rounded-2xl p-5 shadow-xl relative overflow-hidden">
+      <div className="bg-gradient-to-r from-zinc-900 via-zinc-900/90 to-indigo-950/40 border border-zinc-800 rounded-xl p-3.5 sm:p-4 shadow-md relative overflow-hidden">
         <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-indigo-500/10 via-transparent to-transparent pointer-events-none" />
 
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 relative z-10">
-          <div className="flex items-center space-x-4">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 relative z-10">
+          <div className="flex items-center space-x-3 min-w-0">
             <img
               src={app.iconUrl}
               alt={app.name}
-              className="w-14 h-14 rounded-2xl object-cover border-2 border-zinc-700/80 shadow-lg"
+              className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl object-cover border-2 border-zinc-700/80 shadow-md shrink-0"
             />
-            <div>
+            <div className="min-w-0 truncate">
               <div className="flex items-center space-x-2">
-                <h1 className="text-xl font-bold text-white tracking-tight">{app.name}</h1>
-                <span className="text-xs bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 px-2 py-0.5 rounded-full font-medium">
+                <h1 className="text-base sm:text-lg font-bold text-white tracking-tight truncate">{app.name}</h1>
+                <span className="text-[10px] bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 px-2 py-0.2 rounded-full font-medium shrink-0">
                   {app.platform} • {countryName}
                 </span>
               </div>
-              <p className="text-xs text-zinc-400 mt-0.5">
+              <p className="text-[11px] text-zinc-400 mt-0.5 truncate">
                 {app.developer} • {app.category} • {app.keywords.length} Keywords Tracked
               </p>
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
             <button
               onClick={() => setShowAlertsPanel(!showAlertsPanel)}
-              className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all cursor-pointer relative ${
+              className={`flex items-center space-x-1 px-2.5 py-1 rounded-lg text-xs font-semibold border transition-all cursor-pointer relative ${
                 showAlertsPanel
                   ? "bg-rose-500/25 text-rose-300 border-rose-500/50 shadow-md"
                   : "bg-zinc-800 text-zinc-300 border-zinc-700 hover:text-white"
               }`}
             >
-              <Bell className="w-3.5 h-3.5 text-rose-400" />
-              <span>Rank Alerts</span>
+              <Bell className="w-3 h-3 text-rose-400" />
+              <span>Alerts</span>
               {unreadAlertsCount > 0 && (
                 <span className="bg-rose-500 text-white text-[9px] font-bold px-1.5 py-0.2 rounded-full font-mono animate-pulse">
                   {unreadAlertsCount}
@@ -262,67 +262,67 @@ export const KeywordTracker: React.FC<KeywordTrackerProps> = ({
 
             <button
               onClick={() => setShow30DayTrendChart(!show30DayTrendChart)}
-              className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all cursor-pointer ${
+              className={`flex items-center space-x-1 px-2.5 py-1 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
                 show30DayTrendChart
                   ? "bg-indigo-600/30 text-indigo-300 border-indigo-500/50 shadow-sm"
                   : "bg-zinc-800 text-zinc-400 border-zinc-700 hover:text-zinc-200"
               }`}
             >
-              <TrendingUp className="w-3.5 h-3.5 text-indigo-400" />
-              <span>30D Rank Trend Chart</span>
+              <TrendingUp className="w-3 h-3 text-indigo-400" />
+              <span>30D Trend</span>
             </button>
 
             <button
               onClick={() => setShowRankDistribution(!showRankDistribution)}
-              className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-xl text-xs font-medium border transition-all cursor-pointer ${
+              className={`flex items-center space-x-1 px-2.5 py-1 rounded-lg text-xs font-medium border transition-all cursor-pointer ${
                 showRankDistribution
                   ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/40"
                   : "bg-zinc-800 text-zinc-400 border-zinc-700 hover:text-zinc-200"
               }`}
             >
-              <BarChart3 className="w-3.5 h-3.5 text-emerald-400" />
-              <span>Rank Distribution</span>
+              <BarChart3 className="w-3 h-3 text-emerald-400" />
+              <span>Distribution</span>
             </button>
 
             <button
               onClick={() => setShowScatterPlot(!showScatterPlot)}
-              className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-xl text-xs font-medium border transition-all cursor-pointer ${
+              className={`flex items-center space-x-1 px-2.5 py-1 rounded-lg text-xs font-medium border transition-all cursor-pointer ${
                 showScatterPlot
                   ? "bg-purple-500/20 text-purple-300 border-purple-500/40"
                   : "bg-zinc-800 text-zinc-400 border-zinc-700 hover:text-zinc-200"
               }`}
             >
-              <Target className="w-3.5 h-3.5 text-purple-400" />
-              <span>Difficulty Correlation</span>
+              <Target className="w-3 h-3 text-purple-400" />
+              <span>Scatter</span>
             </button>
 
             <button
               onClick={() => setShowPredictiveTrends(!showPredictiveTrends)}
-              className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-xl text-xs font-medium border transition-all cursor-pointer ${
+              className={`flex items-center space-x-1 px-2.5 py-1 rounded-lg text-xs font-medium border transition-all cursor-pointer ${
                 showPredictiveTrends
                   ? "bg-indigo-500/20 text-indigo-300 border-indigo-500/40"
                   : "bg-zinc-800 text-zinc-400 border-zinc-700 hover:text-zinc-200"
               }`}
             >
-              <TrendingUp className="w-3.5 h-3.5 text-indigo-400" />
-              <span>Predictive Trends (30D)</span>
+              <TrendingUp className="w-3 h-3 text-indigo-400" />
+              <span>Predictive</span>
             </button>
 
             <button
               onClick={() => setShowHeatmap(!showHeatmap)}
-              className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-xl text-xs font-medium border transition-all cursor-pointer ${
+              className={`flex items-center space-x-1 px-2.5 py-1 rounded-lg text-xs font-medium border transition-all cursor-pointer ${
                 showHeatmap
                   ? "bg-amber-500/20 text-amber-300 border-amber-500/40"
                   : "bg-zinc-800 text-zinc-400 border-zinc-700 hover:text-zinc-200"
               }`}
             >
-              <Flame className="w-3.5 h-3.5 text-amber-400" />
-              <span>Heatmap Widget</span>
+              <Flame className="w-3 h-3 text-amber-400" />
+              <span>Heatmap</span>
             </button>
 
             <button
               onClick={() => setShowTranslations(!showTranslations)}
-              className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-xl text-xs font-medium border transition-all cursor-pointer ${
+              className={`flex items-center space-x-1 px-2.5 py-1 rounded-lg text-xs font-medium border transition-all cursor-pointer ${
                 showTranslations
                   ? "bg-indigo-600/20 text-indigo-300 border-indigo-500/40"
                   : "bg-zinc-800 text-zinc-400 border-zinc-700 hover:text-zinc-200"

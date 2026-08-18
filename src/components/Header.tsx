@@ -79,67 +79,62 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/80 px-4 py-2.5 text-zinc-100 flex items-center justify-between">
+    <header className="sticky top-0 z-40 bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800/80 px-2 sm:px-4 py-2 text-zinc-100 flex items-center justify-between gap-2">
       {/* Brand & App Picker */}
-      <div className="flex items-center space-x-3 sm:space-x-4">
+      <div className="flex items-center space-x-2 sm:space-x-3 shrink-0">
         {/* Logo */}
-        <div className="flex items-center space-x-2 cursor-pointer" onClick={onToggleMode}>
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-indigo-600 via-indigo-500 to-purple-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
-            <Sparkles className="w-4 h-4 text-white" />
+        <div className="flex items-center space-x-1.5 cursor-pointer" onClick={onToggleMode}>
+          <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-indigo-600 via-indigo-500 to-purple-500 flex items-center justify-center shadow-md shadow-indigo-500/20">
+            <Sparkles className="w-3.5 h-3.5 text-white" />
           </div>
           <div className="flex items-center">
-            <span className="font-bold text-base tracking-tight bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">
+            <span className="font-bold text-sm sm:text-base tracking-tight bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">
               AstroASO
-            </span>
-            <span className="hidden sm:inline-block text-[10px] font-medium text-indigo-400 ml-1.5 px-1.5 py-0.5 rounded-full bg-indigo-500/10 border border-indigo-500/20">
-              Studio
             </span>
           </div>
         </div>
 
-        <div className="h-5 w-px bg-zinc-800 hidden sm:block" />
+        <div className="h-4 w-px bg-zinc-800 hidden sm:block" />
 
         {/* Mode Switcher pill */}
         <div className="flex items-center bg-zinc-900 border border-zinc-800 rounded-lg p-0.5 text-xs font-medium">
           <button
             onClick={() => mode !== "studio" && onToggleMode()}
-            className={`px-2.5 py-1 rounded-md transition-all flex items-center space-x-1.5 ${
+            className={`px-2 py-1 rounded-md transition-all flex items-center space-x-1 ${
               mode === "studio"
                 ? "bg-zinc-800 text-white shadow-sm font-semibold"
                 : "text-zinc-400 hover:text-zinc-200"
             }`}
           >
             <LayoutDashboard className="w-3.5 h-3.5 text-indigo-400" />
-            <span className="hidden sm:inline">Studio Workspace</span>
-            <span className="sm:hidden">Studio</span>
+            <span className="hidden md:inline">Studio</span>
           </button>
           <button
             onClick={() => mode !== "landing" && onToggleMode()}
-            className={`px-2.5 py-1 rounded-md transition-all flex items-center space-x-1.5 ${
+            className={`px-2 py-1 rounded-md transition-all flex items-center space-x-1 ${
               mode === "landing"
                 ? "bg-zinc-800 text-white shadow-sm font-semibold"
                 : "text-zinc-400 hover:text-zinc-200"
             }`}
           >
             <ExternalLink className="w-3.5 h-3.5 text-purple-400" />
-            <span className="hidden sm:inline">tryastro.app Website</span>
-            <span className="sm:hidden">Landing</span>
+            <span className="hidden md:inline">Website</span>
           </button>
         </div>
 
         {/* App Selector Dropdown (Shown in Studio mode) */}
         {mode === "studio" && (
           <div className="relative group">
-            <div className="flex items-center space-x-2 bg-zinc-900 hover:bg-zinc-800/80 border border-zinc-800 rounded-lg px-2.5 py-1.5 cursor-pointer transition-colors text-xs">
+            <div className="flex items-center space-x-1.5 bg-zinc-900 hover:bg-zinc-800/80 border border-zinc-800 rounded-lg px-2 py-1 cursor-pointer transition-colors text-xs">
               <img
                 src={selectedApp.iconUrl}
                 alt={selectedApp.name}
-                className="w-5 h-5 rounded-md object-cover border border-zinc-700"
+                className="w-4 h-4 rounded object-cover border border-zinc-700"
               />
-              <div className="max-w-[130px] sm:max-w-[180px] truncate">
-                <p className="font-semibold text-zinc-100 truncate">{selectedApp.name}</p>
+              <div className="max-w-[90px] sm:max-w-[140px] md:max-w-[180px] truncate">
+                <p className="font-semibold text-zinc-100 truncate text-[11px] sm:text-xs">{selectedApp.name}</p>
               </div>
-              <ChevronDown className="w-3.5 h-3.5 text-zinc-400" />
+              <ChevronDown className="w-3 h-3 text-zinc-400" />
             </div>
 
             {/* Dropdown Menu */}
@@ -196,13 +191,13 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Country & Platform Controls */}
       {mode === "studio" && (
-        <div className="flex items-center space-x-2 sm:space-x-3">
+        <div className="flex items-center space-x-1.5 sm:space-x-2 shrink-0">
           {/* Storefront Country Select */}
           <div className="relative group">
-            <button className="flex items-center space-x-1.5 bg-zinc-900 hover:bg-zinc-800/80 border border-zinc-800 rounded-lg px-2.5 py-1.5 text-xs text-zinc-300 transition-colors">
-              <span className="text-sm">{currentCountryObj.flag}</span>
-              <span className="hidden md:inline font-medium">{currentCountryObj.name}</span>
-              <span className="md:hidden font-mono uppercase">{currentCountryObj.code}</span>
+            <button className="flex items-center space-x-1 bg-zinc-900 hover:bg-zinc-800/80 border border-zinc-800 rounded-lg px-2 py-1 text-xs text-zinc-300 transition-colors">
+              <span className="text-xs">{currentCountryObj.flag}</span>
+              <span className="hidden xl:inline font-medium text-[11px]">{currentCountryObj.name}</span>
+              <span className="xl:hidden font-mono uppercase text-[11px]">{currentCountryObj.code}</span>
               <ChevronDown className="w-3 h-3 text-zinc-400" />
             </button>
 
@@ -237,7 +232,7 @@ export const Header: React.FC<HeaderProps> = ({
               <button
                 key={p}
                 onClick={() => onSelectPlatform(p)}
-                className={`px-2 py-1 rounded-md flex items-center space-x-1 transition-colors ${
+                className={`px-1.5 py-0.5 rounded-md flex items-center space-x-1 transition-colors ${
                   selectedPlatform === p
                     ? "bg-zinc-800 text-indigo-300 font-semibold"
                     : "text-zinc-400 hover:text-zinc-200"
@@ -245,7 +240,7 @@ export const Header: React.FC<HeaderProps> = ({
                 title={p}
               >
                 {getPlatformIcon(p)}
-                <span className="text-[11px]">{p}</span>
+                <span className="text-[10px]">{p}</span>
               </button>
             ))}
           </div>
@@ -253,7 +248,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Neon Database Status Badge */}
           {dbStatus && (
             <div
-              className={`hidden lg:flex items-center space-x-1.5 px-2.5 py-1 rounded-lg border text-xs font-mono transition-all ${
+              className={`hidden xl:flex items-center space-x-1.5 px-2 py-1 rounded-lg border text-[11px] font-mono transition-all ${
                 dbStatus.connected
                   ? "bg-emerald-950/40 border-emerald-500/30 text-emerald-300"
                   : "bg-amber-950/40 border-amber-500/30 text-amber-300"
@@ -264,10 +259,10 @@ export const Header: React.FC<HeaderProps> = ({
                   : "Neon PostgreSQL Connecting..."
               }
             >
-              <Database className="w-3.5 h-3.5 text-emerald-400" />
-              <span className="font-semibold text-[11px]">Neon DB</span>
+              <Database className="w-3 h-3 text-emerald-400" />
+              <span className="font-semibold">Neon</span>
               {dbStatus.isSyncing ? (
-                <RefreshCw className="w-3 h-3 text-emerald-400 animate-spin" />
+                <RefreshCw className="w-2.5 h-2.5 text-emerald-400 animate-spin" />
               ) : (
                 <span
                   className={`w-1.5 h-1.5 rounded-full ${
@@ -285,9 +280,9 @@ export const Header: React.FC<HeaderProps> = ({
               className="relative p-1.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded-lg text-zinc-300 hover:text-white transition-all cursor-pointer flex items-center justify-center"
               title="Rank Drop Alerts & Threshold Settings"
             >
-              <Bell className="w-4 h-4 text-rose-400" />
+              <Bell className="w-3.5 h-3.5 text-rose-400" />
               {unreadAlertsCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-rose-500 text-white text-[9px] font-bold font-mono px-1.5 py-0.2 rounded-full min-w-[16px] text-center shadow-sm animate-pulse">
+                <span className="absolute -top-1 -right-1 bg-rose-500 text-white text-[9px] font-bold font-mono px-1 py-0.2 rounded-full min-w-[14px] text-center shadow-sm animate-pulse">
                   {unreadAlertsCount}
                 </span>
               )}
@@ -297,28 +292,22 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Track App Button */}
           <button
             onClick={onOpenAddApp}
-            className="flex items-center space-x-1 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-3 py-1.5 rounded-lg shadow-md shadow-indigo-600/20 transition-all cursor-pointer"
+            className="flex items-center space-x-1 bg-indigo-600 hover:bg-indigo-500 text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg shadow-md shadow-indigo-600/20 transition-all cursor-pointer"
           >
-            <Plus className="w-3.5 h-3.5" />
+            <Plus className="w-3 h-3" />
             <span className="hidden sm:inline">Add App</span>
           </button>
 
           {/* Dark / White Mode Toggle */}
           <button
             onClick={onToggleTheme}
-            className="p-1.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded-lg text-zinc-300 hover:text-white transition-all cursor-pointer flex items-center space-x-1 text-xs"
+            className="p-1.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded-lg text-zinc-300 hover:text-white transition-all cursor-pointer flex items-center justify-center text-xs"
             title={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
           >
             {theme === "dark" ? (
-              <>
-                <Sun className="w-4 h-4 text-amber-400" />
-                <span className="hidden xl:inline text-[11px] font-medium text-amber-300">Light</span>
-              </>
+              <Sun className="w-3.5 h-3.5 text-amber-400" />
             ) : (
-              <>
-                <Moon className="w-4 h-4 text-indigo-400" />
-                <span className="hidden xl:inline text-[11px] font-medium text-indigo-400">Dark</span>
-              </>
+              <Moon className="w-3.5 h-3.5 text-indigo-400" />
             )}
           </button>
         </div>
